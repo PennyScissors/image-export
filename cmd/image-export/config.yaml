@@ -1,0 +1,47 @@
+rancherTag: "v0.0.0"
+
+outputMode:
+  all: true # one file with all images
+  split: true # one file of images for each component (core, rancher, charts, rke, etc)
+  feature: true # one file of images per feature (monitoring, istio).
+
+os:
+  linux: true
+  windows: true
+
+kdmDataUrl: "http://url/to/data.json"
+
+core:
+  enabled: true
+
+rancher:
+  enabled: true
+
+charts:
+  enabled: true
+  repository:
+    url: "https://github.com/rancher/charts.git"
+    branch: "release-v2.6"
+  include: # if chart exists in both, the images will be included
+    # include -> exports the images for the charts listed here, everything else is excluded.
+    - "rancher-monitoring"
+    - "rancher-logging"
+  exclude:
+    # exclude -> exports the images for all charts except the charts listed here.
+    - "rancher-istio"
+    - "rancher-vsphere-csi"
+
+systemCharts:
+  enabled: true
+  repository:
+    url: "https://github.com/rancher/system-charts.git"
+    branch: "release-v2.6"
+
+rke:
+  enabled: true
+
+rke2:
+  enabled: true
+
+k3s:
+  enabled: true
